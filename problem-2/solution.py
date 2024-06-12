@@ -1,11 +1,12 @@
 def solution(s):
-    first_char = s[0]
-    count_left = s.count('(')
-    count_right = s.count(')')
+    stack = []
     
-    if first_char != '(' :
-        return False
-    if count_left != count_right :
-        return False
-
-    return True
+    for char in s:
+        if char == '(':
+            stack.append(char)
+        elif char == ')':
+            if not stack:
+                return False
+            stack.pop()
+    
+    return not stack
